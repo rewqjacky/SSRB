@@ -58,4 +58,4 @@ client.on('messageDelete', message => {
 
 
 keepAlive();
-client.login('ODEzMDg5NTA1MjM4MTg4MDYz.YDKOnA.RT22NjyH11xFx5vJAnbZof4Ke5s');
+client.login('TOKEN');
