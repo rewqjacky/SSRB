@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 const { Client, MessageEmbed } = require('discord.js');
-const keepAlive = require('./server');
+const keepAlive = require("./server");
 const prefix = '-';
 const fs = require('fs');
 const { setUncaughtExceptionCaptureCallback } = require('process');
@@ -13,13 +13,16 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }
 
+const advancedPolls = require(`./advanced-polls`);
+
 client.once('ready', () => {
     console.log('SSRB is online!');
     memberCounter(client);
+    advancedPolls(client);
 });
 
 client.on('guildMemberAdd', member => {
-    member.guild.channels.cache.get('759720571721482276').send("歡迎" + member.toString() + "加入,你可以去" + "<#805646153597059102>" +"看一下");
+    member.guild.channels.cache.get('781156278252208169').send("歡迎 " + member.toString() + " 加入，請先去" + "<#767724012934791168>" + "看一下規則然後拿取你的身份組，" + "<#781159554159345724>" + "這邊有群組內的導覽。");
 });
 
 client.on('message', message =>{
@@ -43,7 +46,7 @@ client.on('message', message =>{
 
 client.on('messageDelete', message => {
     if(!message.partial) {
-        const channel = client.channels.cache.get('818813396015251517');
+        const channel = client.channels.cache.get('819165881623773194');
         if(channel) {
             const embed = new MessageEmbed()
             .setTitle('已刪除信息')
@@ -58,4 +61,4 @@ client.on('messageDelete', message => {
 
 
 keepAlive();
-client.login('TOKEN');
+client.login(process.env.DISCORD_BOT_TOKEN);
