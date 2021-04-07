@@ -41,7 +41,10 @@ client.on('message', message =>{
         message.channel.send(Math.floor(Math.random() * 100) + "%");
     } else if(command.endsWith("好感度")) {
         message.channel.send(Math.floor((Math.random() - 0.5) * 200));
+    } else if (message.content.startsWith('!')) {
+        client.commands.get('timeTag').execute(message, Discord);
     }
+});
 });
 
 client.on('messageDelete', message => {
